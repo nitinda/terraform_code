@@ -4,11 +4,11 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
 
   cluster_config {
     instance_type  = "t2.small.elasticsearch"
-    instance_count = 2
+    instance_count = 3
     dedicated_master_enabled = true
     zone_awareness_enabled = true
     dedicated_master_type = "t2.small.elasticsearch"
-    dedicated_master_count = 2
+    dedicated_master_count = 3
   }
 
   snapshot_options {
@@ -21,15 +21,15 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
       volume_size = "10"
   }
 
-  # vpc_options {
-  #     subnet_ids = [
-  #         "${aws_subnet.demo-terraform-subnet-public.*.id[0]}",
-  #         "${aws_subnet.demo-terraform-subnet-public.*.id[1]}"
-  #     ]
-  #     security_group_ids = [
-  #         "${aws_security_group.demo-terraform-security-group.id}"
-  #     ]
-  # }
+  vpc_options {
+      subnet_ids = [
+          "${aws_subnet.demo-terraform-subnet-public.*.id[0]}",
+          "${aws_subnet.demo-terraform-subnet-public.*.id[1]}"
+      ]
+      security_group_ids = [
+          "${aws_security_group.demo-terraform-security-group.id}"
+      ]
+  }
 
   access_policies = <<POLICY
 {
