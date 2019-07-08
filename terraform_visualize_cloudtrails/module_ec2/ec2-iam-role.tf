@@ -1,6 +1,5 @@
 resource "aws_iam_role" "demo-iam-role-ec2" {
   name = "terraform-demo-iam-role-ec2"
-  tags = "${local.common_tags}"
 
   assume_role_policy = <<POLICY
 {

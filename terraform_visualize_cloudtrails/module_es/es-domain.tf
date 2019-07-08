@@ -4,7 +4,7 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
 
   cluster_config {
     instance_type  = "t2.small.elasticsearch"
-    instance_count = 3
+    instance_count = 2
     dedicated_master_enabled = true
     zone_awareness_enabled = true
     dedicated_master_type = "t2.small.elasticsearch"
@@ -22,13 +22,8 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
   }
 
   vpc_options {
-      subnet_ids = [
-          "${aws_subnet.demo-terraform-subnet-public.*.id[0]}",
-          "${aws_subnet.demo-terraform-subnet-public.*.id[1]}"
-      ]
-      security_group_ids = [
-          "${aws_security_group.demo-terraform-security-group.id}"
-      ]
+      subnet_ids = ["${var.es_subnet_ids}"]
+      security_group_ids = ["${var.security_group_ids}"]
   }
 
   access_policies = <<POLICY
@@ -57,8 +52,8 @@ POLICY
 
   cognito_options = {
       enabled = true
-      user_pool_id = "${aws_cognito_user_pool.demo-cognoti-user-pool.id}"
-      identity_pool_id = "${aws_cognito_identity_pool.demo-cognito-identity-pool.id}"
+      user_pool_id = "${var.cognito_user_pool_id}"
+      identity_pool_id = "${var.cognito_identity_pool_id}"
       role_arn = "${aws_iam_role.demo-iam-role-es.arn}"
   }
 }

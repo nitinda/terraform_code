@@ -13,10 +13,10 @@ resource "aws_launch_template" "demo-launch-template-ec2" {
   ebs_optimized = false
 
   iam_instance_profile = {
-    name = ""
+    name = "${aws_iam_instance_profile.demo-iam-instance-profile-ec2.name}"
   }
   
-  vpc_security_group_ids = ["${aws_security_group.demo-terraform-security-group.id}"]
+  vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
 
   monitoring {
     enabled = false

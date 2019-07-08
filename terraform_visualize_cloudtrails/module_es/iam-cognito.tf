@@ -13,7 +13,7 @@ resource "aws_iam_role" "demo-iam-role-cognito" {
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
-          "cognito-identity.amazonaws.com:aud": "${aws_cognito_identity_pool.demo-cognito-identity-pool.id}"
+          "cognito-identity.amazonaws.com:aud": "${var.cognito_identity_pool_id}"
         },
         "ForAnyValue:StringLike": {
           "cognito-identity.amazonaws.com:amr": "authenticated"
@@ -50,7 +50,7 @@ EOF
 }
 
 resource "aws_cognito_identity_pool_roles_attachment" "demo-iam-role-attachment-cognito" {
-  identity_pool_id = "${aws_cognito_identity_pool.demo-cognito-identity-pool.id}"
+  identity_pool_id = "${var.cognito_identity_pool_id}"
 
   roles = {
     "authenticated" = "${aws_iam_role.demo-iam-role-cognito.arn}"
