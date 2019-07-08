@@ -11,7 +11,6 @@ module "aws_resources_module_network" {
   }
 }
 
-
 module "aws_resources_module_ec2" {
   source  = "../module_ec2"
 
@@ -19,8 +18,8 @@ module "aws_resources_module_ec2" {
     "aws"  = "aws.shared_services"
   }
 
-  vpc_zone_identifier = "${module.aws_resources_module_network.demo-subnet-private}"
-  vpc_security_group_ids = "${module.aws_resources_module_network.demo-security-group}"
+  vpc_zone_identifier = "${module.aws_resources_module_network.demo_subnet_private}"
+  vpc_security_group_ids = "${module.aws_resources_module_network.demo_security_group}"
 }
 
 module "aws_resources_module_cognito" {
@@ -39,13 +38,22 @@ module "aws_resources_module_s3" {
   }
 }
 
-
 module "aws_resources_module_cloudwatch_logs" {
   source  = "../module_cloudwatch_logs"
 
   providers = {
     "aws"  = "aws.shared_services"
   }
+}
+
+module "aws_resources_module_vpcflow_logs" {
+  source  = "../module_vpcflow_logs"
+
+  providers = {
+    "aws"  = "aws.shared_services"
+  }
+  vpc_id = "${module.aws_resources_module_network.demo_vpc_id}"
+  log_destination_arn = "${module.aws_resources_module_cloudwatch_logs.cloud_watch_logs_group_arn_vpcflow}"
 }
 
 module "aws_resources_module_cloudtrail" {
@@ -67,10 +75,10 @@ module "aws_resources_module_es" {
     "aws"  = "aws.shared_services"
   }
 
-  es_subnet_ids = "${module.aws_resources_module_network.demo-subnet-public}"
-  security_group_ids = "${module.aws_resources_module_network.demo-security-group}"
+  es_subnet_ids = "${module.aws_resources_module_network.demo_subnet_public}"
+  security_group_ids = "${module.aws_resources_module_network.demo_security_group}"
   cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
-  cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"
+  cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"  
 }
 
 module "aws_resources_module_lambda" {

@@ -21,10 +21,10 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
       volume_size = "10"
   }
 
-  vpc_options {
-      subnet_ids = ["${var.es_subnet_ids}"]
-      security_group_ids = ["${var.security_group_ids}"]
-  }
+  # vpc_options {
+  #     subnet_ids = ["${var.es_subnet_ids}"]
+  #     security_group_ids = ["${var.security_group_ids}"]
+  # }
 
   access_policies = <<POLICY
 {
