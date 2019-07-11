@@ -17,3 +17,4 @@ variable "cloud_watch_logs_role_arn" {
 variable "cloud_watch_logs_group_arn_vpcflow" {
   description = "description"
 }
+

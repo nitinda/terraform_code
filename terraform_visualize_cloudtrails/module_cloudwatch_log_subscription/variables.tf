@@ -13,3 +13,7 @@ variable "lambda_function_cloudtrail_logstoelasticsearch_arn" {
 variable "lambda_function_vpcflow_logstoelasticsearch_arn" {
   description = "description"
 }
+
+variable "lambda_cwlpolicyforstreaming_role_arn" {
+  description = "description"
+}

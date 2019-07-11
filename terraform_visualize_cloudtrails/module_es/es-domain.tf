@@ -51,9 +51,9 @@ POLICY
   ]
 
   cognito_options = {
-      enabled = true
-      user_pool_id = "${var.cognito_user_pool_id}"
-      identity_pool_id = "${var.cognito_identity_pool_id}"
-      role_arn = "${aws_iam_role.demo-iam-role-es.arn}"
+    enabled = true
+    user_pool_id = "${var.cognito_user_pool_id}"
+    identity_pool_id = "${var.cognito_identity_pool_id}"
+    role_arn = "${aws_iam_role.demo-iam-role-es.arn}"
   }
 }

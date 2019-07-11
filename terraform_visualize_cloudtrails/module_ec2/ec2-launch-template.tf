@@ -1,9 +1,8 @@
 
 
-# data "template_file" "asg_userdata" {
-#   template = "${file("../module/files/userdata.sh")}"
-# }
-
+data "template_file" "demo-launch-template-userdata" {
+  template = "${file("../module_ec2/files/userdata.sh")}"
+}
 
 resource "aws_launch_template" "demo-launch-template-ec2" {
   name_prefix   = "terraform-demo-launch-template-ec2"
@@ -28,6 +27,12 @@ resource "aws_launch_template" "demo-launch-template-ec2" {
       Name = "terraform-demo-launch-template-ec2"
     }
   }
+  tag_specifications {
+    resource_type = "volume"
+    tags = {
+      Name = "terraform-demo-launch-template-ec2"
+    }
+  }
 
-  # user_data = "${base64encode("${data.template_file.asg_userdata.rendered}")}"
+  user_data = "${base64encode("${data.template_file.demo-launch-template-userdata.rendered}")}"
 }
