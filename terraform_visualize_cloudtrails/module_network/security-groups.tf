@@ -14,7 +14,7 @@ resource "aws_security_group" "demo-security-group" {
     from_port   = 80
     to_port     = 80
     protocol    = "TCP"
-    cidr_blocks = ["${aws_vpc.demo-vpc.cidr_block}"]
+    cidr_blocks = ["${aws_vpc.demo-vpc.cidr_block}","${local.workstation-external-cidr}"]
   }
 
   egress {

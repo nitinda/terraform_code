@@ -34,7 +34,7 @@ resource "aws_elasticsearch_domain" "demo-es-domain" {
         "Action": "es:*",
         "Principal": {
           "AWS": [
-            "${aws_iam_role.demo-iam-role-cognito.arn}"
+            "${var.cognito_iam_role_arn}"
           ]
         },
         "Effect": "Allow",

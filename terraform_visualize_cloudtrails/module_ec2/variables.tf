@@ -24,8 +24,8 @@ variable "vpc_id" {
 }
 
 
-data "aws_acm_certificate" "demo-acm-certificate" {
-  statuses = ["ISSUED"]
-  types    = ["AMAZON_ISSUED"]
-  domain   = "${var.acm_domain_name}"
-}
+# data "aws_acm_certificate" "demo-acm-certificate" {
+#   statuses = ["ISSUED"]
+#   types    = ["AMAZON_ISSUED"]
+#   domain   = "${var.acm_domain_name}"
+# }

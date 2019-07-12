@@ -81,7 +81,8 @@ module "aws_resources_module_es" {
   security_group_ids = "${module.aws_resources_module_network.demo_security_group}"
   cognito_user_pool_id = "${module.aws_resources_module_cognito.cognito_user_pool_id}"
   cognito_user_pool_endpoint = "${module.aws_resources_module_cognito.cognito_user_pool_endpoint}"
-  cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"  
+  cognito_identity_pool_id = "${module.aws_resources_module_cognito.cognito_identity_pool_id}"
+  cognito_iam_role_arn = "${module.aws_resources_module_cognito.cognito_iam_role_arn}"
 }
 
 module "aws_resources_module_lambda" {

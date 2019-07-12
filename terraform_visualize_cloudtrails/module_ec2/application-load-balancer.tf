@@ -13,10 +13,12 @@ resource "aws_lb" "demo-application-loadbalancer" {
 
 resource "aws_lb_listener" "demo-application-loadbalancer-listener" {
   load_balancer_arn = "${aws_lb.demo-application-loadbalancer.arn}"
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "${data.aws_acm_certificate.demo-acm-certificate.arn}"
+  # port              = "443"
+  # protocol          = "HTTPS"
+  port              = "80"
+  protocol          = "HTTP"
+  # ssl_policy        = "ELBSecurityPolicy-2016-08"
+  # certificate_arn   = "${data.aws_acm_certificate.demo-acm-certificate.arn}"
 
   default_action {
     type             = "forward"

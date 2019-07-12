@@ -1,0 +1,19 @@
+[
+    {
+        "family": "webserver",
+        "containerDefinitions": [
+            {
+                "name": "web",
+                "image": "nginx",
+                "memory": "100",
+                "cpu": "99"
+            }
+        ],
+        "requiresCompatibilities": [
+            "EC2"
+        ],
+        "networkMode": "awsvpc",
+        "memory": "512",
+        "cpu": "256"
+    }
+]

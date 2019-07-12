@@ -18,3 +18,7 @@ variable "cognito_identity_pool_id" {
 variable "cognito_user_pool_endpoint" {
   description = "description"
 }
+
+variable "cognito_iam_role_arn" {
+  description = "description"
+}
